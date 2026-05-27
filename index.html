@@ -1,34 +1,282 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내 홈페이지</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seongmin Portfolio</title>
 
   <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
     body{
-      font-family: sans-serif;
-      background:#f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+      overflow-x:hidden;
+    }
+
+    /* 배경 애니메이션 */
+
+    .bg{
+      position:fixed;
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      z-index:-1;
+    }
+
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,0.05);
+      animation: float 15s infinite linear;
+    }
+
+    .circle:nth-child(1){
+      width:200px;
+      height:200px;
+      left:10%;
+      top:20%;
+      animation-duration:18s;
+    }
+
+    .circle:nth-child(2){
+      width:300px;
+      height:300px;
+      right:10%;
+      top:10%;
+      animation-duration:25s;
+    }
+
+    .circle:nth-child(3){
+      width:150px;
+      height:150px;
+      left:40%;
+      bottom:10%;
+      animation-duration:14s;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px) rotate(0deg);
+      }
+
+      50%{
+        transform:translateY(-40px) rotate(180deg);
+      }
+
+      100%{
+        transform:translateY(0px) rotate(360deg);
+      }
+    }
+
+    /* 메인 */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
       text-align:center;
-      padding-top:100px;
+      padding:20px;
     }
 
     h1{
-      color:#333;
-      font-size:50px;
+      font-size:70px;
+      margin-bottom:20px;
+      animation: fadeUp 1s ease;
     }
 
-    p{
-      font-size:20px;
-      color:#666;
+    .typing{
+      font-size:24px;
+      color:#94a3b8;
+      margin-bottom:40px;
+      border-right:3px solid white;
+      width:0;
+      overflow:hidden;
+      white-space:nowrap;
+      animation:
+        typing 4s steps(30,end) forwards,
+        blink 0.7s infinite;
     }
+
+    .btns{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      color:white;
+      background:#2563eb;
+      transition:0.3s;
+      font-weight:bold;
+      box-shadow:0 0 20px rgba(37,99,235,0.4);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px) scale(1.05);
+      background:#3b82f6;
+    }
+
+    /* 섹션 */
+
+    section{
+      padding:100px 10%;
+    }
+
+    .card-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-top:40px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      padding:30px;
+      border-radius:20px;
+      backdrop-filter:blur(10px);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.08);
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#60a5fa;
+    }
+
+    footer{
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+    }
+
+    @keyframes typing{
+      from{
+        width:0;
+      }
+
+      to{
+        width:350px;
+      }
+    }
+
+    @keyframes blink{
+      50%{
+        border-color:transparent;
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      h1{
+        font-size:45px;
+      }
+
+      .typing{
+        font-size:18px;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
 
-  <h1>안녕하세요</h1>
-  <p>내 첫 GitHub 홈페이지입니다.</p>
+  <div class="bg">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- 메인 -->
+
+  <section class="hero">
+
+    <h1>SEONGMIN</h1>
+
+    <div class="typing">
+      Network · Developer · Portfolio
+    </div>
+
+    <div class="btns">
+      <a class="btn" href="https://github.com/" target="_blank">
+        GitHub
+      </a>
+
+      <a class="btn" href="#projects">
+        Projects
+      </a>
+    </div>
+
+  </section>
+
+  <!-- 프로젝트 -->
+
+  <section id="projects">
+
+    <h2 style="font-size:40px;">Projects</h2>
+
+    <div class="card-container">
+
+      <div class="card">
+        <h3>TFTP Web System</h3>
+
+        <p>
+          웹 브라우저 기반 파일 전송 시스템 구현 프로젝트
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Network Study</h3>
+
+        <p>
+          TCP/IP 및 네트워크 구조 학습 내용 정리
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Future Works</h3>
+
+        <p>
+          앞으로 개발할 프로젝트들을 추가할 예정입니다.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 SEONGMIN Portfolio
+  </footer>
 
 </body>
 </html>
