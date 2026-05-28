@@ -1,114 +1,493 @@
-<!-- 소개 섹션 대신 넣기 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<section id="about">
+  <title>Network Portfolio</title>
 
-  <h2 class="section-title">Network Concepts</h2>
+  <style>
 
-  <div class="card-container">
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
 
-    <div class="card">
+    body{
+      font-family:'Segoe UI', sans-serif;
+      background:#020617;
+      color:white;
+      overflow-x:hidden;
+    }
 
-      <h3>HTTP</h3>
+    /* 배경 */
 
-      <p>
-        HTTP(HyperText Transfer Protocol)는
-        웹 브라우저와 서버가 데이터를 주고받기 위한 통신 규약입니다.
+    body::before{
+      content:"";
+      position:fixed;
+      width:200%;
+      height:200%;
+      background:
+      radial-gradient(circle,#1e3a8a33 1px,transparent 1px);
+      background-size:40px 40px;
 
-        사용자가 웹사이트에 접속하면
-        브라우저는 HTTP 요청(Request)을 서버에 보내고,
-        서버는 HTML, CSS, 이미지 등의 데이터를 응답(Response)합니다.
+      animation:bgMove 20s linear infinite;
 
-        현재 대부분의 웹사이트는
-        보안 기능이 추가된 HTTPS 방식을 사용합니다.
-      </p>
+      z-index:-1;
+    }
+
+    @keyframes bgMove{
+
+      from{
+        transform:translate(0,0);
+      }
+
+      to{
+        transform:translate(-200px,-200px);
+      }
+
+    }
+
+    /* 네비 */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      padding:20px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      background:rgba(2,6,23,0.8);
+      backdrop-filter:blur(10px);
+
+      z-index:1000;
+    }
+
+    nav h2{
+      color:#60a5fa;
+      letter-spacing:2px;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#60a5fa;
+    }
+
+    /* 메인 */
+
+    .hero{
+      min-height:100vh;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:90px;
+      margin-bottom:20px;
+
+      animation: glow 2s infinite alternate;
+    }
+
+    .hero p{
+      max-width:800px;
+      color:#cbd5e1;
+      font-size:22px;
+      line-height:1.8;
+
+      animation: fadeUp 1.5s ease;
+    }
+
+    /* 섹션 */
+
+    section{
+      padding:120px 10%;
+    }
+
+    .section-title{
+      font-size:50px;
+      margin-bottom:60px;
+      color:#60a5fa;
+      text-align:center;
+    }
+
+    /* 카드 */
+
+    .card-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      padding:35px;
+      border-radius:25px;
+
+      backdrop-filter:blur(12px);
+
+      transition:0.4s;
+
+      opacity:0;
+
+      animation:fadeCard 1s ease forwards;
+    }
+
+    .card:nth-child(1){ animation-delay:0.1s; }
+    .card:nth-child(2){ animation-delay:0.3s; }
+    .card:nth-child(3){ animation-delay:0.5s; }
+    .card:nth-child(4){ animation-delay:0.7s; }
+    .card:nth-child(5){ animation-delay:0.9s; }
+    .card:nth-child(6){ animation-delay:1.1s; }
+
+    .card:hover{
+
+      transform:
+      translateY(-15px)
+      scale(1.03);
+
+      box-shadow:
+      0 0 20px rgba(96,165,250,0.3),
+      0 0 50px rgba(96,165,250,0.2);
+
+      background:rgba(255,255,255,0.08);
+
+    }
+
+    .card h3{
+      margin-bottom:20px;
+      color:#93c5fd;
+      font-size:28px;
+    }
+
+    .card p{
+      color:#cbd5e1;
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    /* footer */
+
+    footer{
+      text-align:center;
+      padding:50px;
+      color:#94a3b8;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* 애니메이션 */
+
+    @keyframes glow{
+
+      from{
+        text-shadow:
+        0 0 10px rgba(96,165,250,0.5),
+        0 0 20px rgba(96,165,250,0.2);
+      }
+
+      to{
+        text-shadow:
+        0 0 25px rgba(96,165,250,1),
+        0 0 50px rgba(96,165,250,0.5);
+      }
+
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    @keyframes fadeCard{
+
+      from{
+        opacity:0;
+        transform:translateY(50px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    /* 모바일 */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+      .hero h1{
+        font-size:55px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      .section-title{
+        font-size:38px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 네비 -->
+
+  <nav>
+
+    <h2>NETWORK</h2>
+
+    <ul>
+      <li><a href="#concepts">Concepts</a></li>
+      <li><a href="#protocols">Protocols</a></li>
+      <li><a href="#systems">Systems</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- 메인 -->
+
+  <section class="hero">
+
+    <h1>NETWORK WORLD</h1>
+
+    <p>
+      인터넷과 웹 시스템은 다양한 네트워크 프로토콜과 구조를 기반으로 동작합니다.
+      HTTP, DNS, TCP/IP 같은 기술들은
+      웹 브라우저와 서버가 서로 연결되고 데이터를 주고받을 수 있도록 도와줍니다.
+    </p>
+
+  </section>
+
+  <!-- 네트워크 개념 -->
+
+  <section id="concepts">
+
+    <h2 class="section-title">
+      Network Concepts
+    </h2>
+
+    <div class="card-container">
+
+      <div class="card">
+
+        <h3>HTTP</h3>
+
+        <p>
+          HTTP는 웹 브라우저와 서버 간 데이터를 주고받기 위한 통신 규약입니다.
+
+          사용자가 웹사이트에 접속하면
+          브라우저는 서버에 요청(Request)을 보내고,
+          서버는 HTML, CSS, 이미지 같은 데이터를 응답(Response)합니다.
+
+          현재 대부분의 웹사이트는
+          암호화 기능이 추가된 HTTPS 방식을 사용합니다.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>DNS</h3>
+
+        <p>
+          DNS는 사람이 읽기 쉬운 도메인 주소를
+          실제 서버 IP 주소로 변환하는 시스템입니다.
+
+          사용자가 도메인을 입력하면
+          DNS 서버가 해당 주소에 연결된 IP를 찾아
+          브라우저가 올바른 서버에 접속할 수 있도록 도와줍니다.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>TCP/IP</h3>
+
+        <p>
+          TCP/IP는 인터넷 통신의 핵심 구조입니다.
+
+          IP는 데이터가 목적지까지 이동하도록 주소를 담당하며,
+          TCP는 데이터가 순서대로 안전하게 도착하도록 관리합니다.
+
+          대부분의 인터넷 서비스는 TCP/IP 기반으로 동작합니다.
+        </p>
+
+      </div>
 
     </div>
 
-    <div class="card">
+  </section>
 
-      <h3>DNS</h3>
+  <!-- 프로토콜 -->
 
-      <p>
-        DNS(Domain Name System)는
-        사람이 읽기 쉬운 도메인 주소를
-        실제 서버 IP 주소로 변환하는 시스템입니다.
+  <section id="protocols">
 
-        예를 들어
-        seongmin6112.shop 같은 주소를 입력하면
-        DNS가 해당 서버의 IP 주소를 찾아
-        브라우저가 올바른 서버에 접속할 수 있도록 도와줍니다.
-      </p>
+    <h2 class="section-title">
+      Protocols
+    </h2>
 
-    </div>
+    <div class="card-container">
 
-    <div class="card">
+      <div class="card">
 
-      <h3>TCP/IP</h3>
+        <h3>UDP</h3>
 
-      <p>
-        TCP/IP는 인터넷 통신의 기본 구조입니다.
+        <p>
+          UDP는 빠른 속도를 우선하는 통신 방식입니다.
 
-        IP는 데이터가 목적지까지 이동할 수 있도록 주소를 담당하고,
-        TCP는 데이터가 순서대로 안전하게 전달되도록 관리합니다.
+          TCP보다 구조가 단순하며
+          연결 과정을 최소화하여 빠른 데이터 전송이 가능합니다.
 
-        대부분의 인터넷 서비스는
-        TCP/IP 기반으로 동작합니다.
-      </p>
+          온라인 게임,
+          실시간 스트리밍,
+          음성 통신 등에 자주 사용됩니다.
+        </p>
 
-    </div>
+      </div>
 
-    <div class="card">
+      <div class="card">
 
-      <h3>UDP</h3>
+        <h3>TFTP</h3>
 
-      <p>
-        UDP(User Datagram Protocol)는
-        빠른 속도를 우선하는 통신 방식입니다.
+        <p>
+          TFTP는 UDP 기반의 간단한 파일 전송 프로토콜입니다.
 
-        TCP와 달리 연결 과정을 단순화하여
-        속도는 빠르지만,
-        데이터 손실 여부를 직접 확인하지 않습니다.
+          구조가 단순하여
+          네트워크 장비 설정 파일 전송,
+          부팅 파일 다운로드 등에 사용됩니다.
 
-        실시간 스트리밍,
-        온라인 게임,
-        TFTP 같은 서비스에서 자주 사용됩니다.
-      </p>
+          복잡한 인증 기능은 없지만
+          빠르고 가벼운 특징을 가지고 있습니다.
+        </p>
 
-    </div>
+      </div>
 
-    <div class="card">
+      <div class="card">
 
-      <h3>TFTP</h3>
+        <h3>HTTPS</h3>
 
-      <p>
-        TFTP(Trivial File Transfer Protocol)는
-        UDP 기반의 간단한 파일 전송 프로토콜입니다.
+        <p>
+          HTTPS는 기존 HTTP에 보안 기능을 추가한 프로토콜입니다.
 
-        구조가 단순하여
-        네트워크 장비 설정 파일 전송,
-        부팅 파일 전송 등에 사용됩니다.
+          SSL/TLS 암호화를 통해
+          사용자의 데이터가 안전하게 전송되도록 보호합니다.
 
-        복잡한 인증 기능은 없지만
-        빠르고 가벼운 특징을 가지고 있습니다.
-      </p>
+          로그인 정보,
+          결제 정보 같은 중요한 데이터 보호에 사용됩니다.
+        </p>
+
+      </div>
 
     </div>
 
-    <div class="card">
+  </section>
 
-      <h3>GitHub Pages</h3>
+  <!-- 시스템 -->
 
-      <p>
-        GitHub Pages는
-        GitHub 저장소의 HTML, CSS, JavaScript 파일을
-        웹사이트 형태로 배포할 수 있는 서비스입니다.
+  <section id="systems">
 
-        정적 웹사이트를 무료로 호스팅할 수 있으며,
-        커스텀 도메인 연결도 지원합니다.
-      </p>
+    <h2 class="section-title">
+      Web Systems
+    </h2>
+
+    <div class="card-container">
+
+      <div class="card">
+
+        <h3>GitHub Pages</h3>
+
+        <p>
+          GitHub Pages는 HTML, CSS, JavaScript 파일을
+          웹사이트 형태로 배포할 수 있는 서비스입니다.
+
+          정적 웹사이트를 무료로 호스팅할 수 있으며,
+          커스텀 도메인 연결도 지원합니다.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Web Browser</h3>
+
+        <p>
+          웹 브라우저는 사용자가 인터넷에 접속할 수 있도록 도와주는 프로그램입니다.
+
+          브라우저는 서버와 HTTP/HTTPS 통신을 수행하며,
+          전달받은 HTML과 CSS를 해석하여 화면에 출력합니다.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Server</h3>
+
+        <p>
+          서버는 클라이언트 요청을 처리하고 데이터를 제공하는 시스템입니다.
+
+          웹 서버는 사용자의 요청에 따라
+          HTML 파일, 이미지, 데이터 등을 전달하며
+          인터넷 서비스의 핵심 역할을 수행합니다.
+        </p>
+
+      </div>
 
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <footer>
+    © 2026 NETWORK PORTFOLIO
+  </footer>
+
+</body>
+</html>
