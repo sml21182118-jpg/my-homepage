@@ -1,282 +1,114 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seongmin Portfolio</title>
+<!-- 소개 섹션 대신 넣기 -->
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<section id="about">
 
-    body{
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: white;
-      overflow-x:hidden;
-    }
+  <h2 class="section-title">Network Concepts</h2>
 
-    /* 배경 애니메이션 */
+  <div class="card-container">
 
-    .bg{
-      position:fixed;
-      width:100%;
-      height:100vh;
-      overflow:hidden;
-      z-index:-1;
-    }
+    <div class="card">
 
-    .circle{
-      position:absolute;
-      border-radius:50%;
-      background:rgba(255,255,255,0.05);
-      animation: float 15s infinite linear;
-    }
+      <h3>HTTP</h3>
 
-    .circle:nth-child(1){
-      width:200px;
-      height:200px;
-      left:10%;
-      top:20%;
-      animation-duration:18s;
-    }
+      <p>
+        HTTP(HyperText Transfer Protocol)는
+        웹 브라우저와 서버가 데이터를 주고받기 위한 통신 규약입니다.
 
-    .circle:nth-child(2){
-      width:300px;
-      height:300px;
-      right:10%;
-      top:10%;
-      animation-duration:25s;
-    }
+        사용자가 웹사이트에 접속하면
+        브라우저는 HTTP 요청(Request)을 서버에 보내고,
+        서버는 HTML, CSS, 이미지 등의 데이터를 응답(Response)합니다.
 
-    .circle:nth-child(3){
-      width:150px;
-      height:150px;
-      left:40%;
-      bottom:10%;
-      animation-duration:14s;
-    }
+        현재 대부분의 웹사이트는
+        보안 기능이 추가된 HTTPS 방식을 사용합니다.
+      </p>
 
-    @keyframes float{
-      0%{
-        transform:translateY(0px) rotate(0deg);
-      }
+    </div>
 
-      50%{
-        transform:translateY(-40px) rotate(180deg);
-      }
+    <div class="card">
 
-      100%{
-        transform:translateY(0px) rotate(360deg);
-      }
-    }
+      <h3>DNS</h3>
 
-    /* 메인 */
+      <p>
+        DNS(Domain Name System)는
+        사람이 읽기 쉬운 도메인 주소를
+        실제 서버 IP 주소로 변환하는 시스템입니다.
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-      padding:20px;
-    }
+        예를 들어
+        seongmin6112.shop 같은 주소를 입력하면
+        DNS가 해당 서버의 IP 주소를 찾아
+        브라우저가 올바른 서버에 접속할 수 있도록 도와줍니다.
+      </p>
 
-    h1{
-      font-size:70px;
-      margin-bottom:20px;
-      animation: fadeUp 1s ease;
-    }
+    </div>
 
-    .typing{
-      font-size:24px;
-      color:#94a3b8;
-      margin-bottom:40px;
-      border-right:3px solid white;
-      width:0;
-      overflow:hidden;
-      white-space:nowrap;
-      animation:
-        typing 4s steps(30,end) forwards,
-        blink 0.7s infinite;
-    }
+    <div class="card">
 
-    .btns{
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
+      <h3>TCP/IP</h3>
 
-    .btn{
-      padding:15px 35px;
-      border-radius:50px;
-      text-decoration:none;
-      color:white;
-      background:#2563eb;
-      transition:0.3s;
-      font-weight:bold;
-      box-shadow:0 0 20px rgba(37,99,235,0.4);
-    }
+      <p>
+        TCP/IP는 인터넷 통신의 기본 구조입니다.
 
-    .btn:hover{
-      transform:translateY(-5px) scale(1.05);
-      background:#3b82f6;
-    }
+        IP는 데이터가 목적지까지 이동할 수 있도록 주소를 담당하고,
+        TCP는 데이터가 순서대로 안전하게 전달되도록 관리합니다.
 
-    /* 섹션 */
+        대부분의 인터넷 서비스는
+        TCP/IP 기반으로 동작합니다.
+      </p>
 
-    section{
-      padding:100px 10%;
-    }
+    </div>
 
-    .card-container{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:30px;
-      margin-top:40px;
-    }
+    <div class="card">
 
-    .card{
-      background:rgba(255,255,255,0.05);
-      padding:30px;
-      border-radius:20px;
-      backdrop-filter:blur(10px);
-      transition:0.3s;
-    }
+      <h3>UDP</h3>
 
-    .card:hover{
-      transform:translateY(-10px);
-      background:rgba(255,255,255,0.08);
-    }
+      <p>
+        UDP(User Datagram Protocol)는
+        빠른 속도를 우선하는 통신 방식입니다.
 
-    .card h3{
-      margin-bottom:15px;
-      color:#60a5fa;
-    }
+        TCP와 달리 연결 과정을 단순화하여
+        속도는 빠르지만,
+        데이터 손실 여부를 직접 확인하지 않습니다.
 
-    footer{
-      text-align:center;
-      padding:40px;
-      color:#94a3b8;
-    }
+        실시간 스트리밍,
+        온라인 게임,
+        TFTP 같은 서비스에서 자주 사용됩니다.
+      </p>
 
-    @keyframes typing{
-      from{
-        width:0;
-      }
+    </div>
 
-      to{
-        width:350px;
-      }
-    }
+    <div class="card">
 
-    @keyframes blink{
-      50%{
-        border-color:transparent;
-      }
-    }
+      <h3>TFTP</h3>
 
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
+      <p>
+        TFTP(Trivial File Transfer Protocol)는
+        UDP 기반의 간단한 파일 전송 프로토콜입니다.
 
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
+        구조가 단순하여
+        네트워크 장비 설정 파일 전송,
+        부팅 파일 전송 등에 사용됩니다.
 
-    @media(max-width:768px){
+        복잡한 인증 기능은 없지만
+        빠르고 가벼운 특징을 가지고 있습니다.
+      </p>
 
-      h1{
-        font-size:45px;
-      }
+    </div>
 
-      .typing{
-        font-size:18px;
-      }
+    <div class="card">
 
-    }
+      <h3>GitHub Pages</h3>
 
-  </style>
-</head>
+      <p>
+        GitHub Pages는
+        GitHub 저장소의 HTML, CSS, JavaScript 파일을
+        웹사이트 형태로 배포할 수 있는 서비스입니다.
 
-<body>
+        정적 웹사이트를 무료로 호스팅할 수 있으며,
+        커스텀 도메인 연결도 지원합니다.
+      </p>
 
-  <div class="bg">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+    </div>
+
   </div>
 
-  <!-- 메인 -->
-
-  <section class="hero">
-
-    <h1>SEONGMIN</h1>
-
-    <div class="typing">
-      Network · Developer · Portfolio
-    </div>
-
-    <div class="btns">
-      <a class="btn" href="https://github.com/" target="_blank">
-        GitHub
-      </a>
-
-      <a class="btn" href="#projects">
-        Projects
-      </a>
-    </div>
-
-  </section>
-
-  <!-- 프로젝트 -->
-
-  <section id="projects">
-
-    <h2 style="font-size:40px;">Projects</h2>
-
-    <div class="card-container">
-
-      <div class="card">
-        <h3>TFTP Web System</h3>
-
-        <p>
-          웹 브라우저 기반 파일 전송 시스템 구현 프로젝트
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Network Study</h3>
-
-        <p>
-          TCP/IP 및 네트워크 구조 학습 내용 정리
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Future Works</h3>
-
-        <p>
-          앞으로 개발할 프로젝트들을 추가할 예정입니다.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <footer>
-    © 2026 SEONGMIN Portfolio
-  </footer>
-
-</body>
-</html>
+</section>
